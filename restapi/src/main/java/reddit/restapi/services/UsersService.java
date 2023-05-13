@@ -31,7 +31,12 @@ public class UsersService {
         //code that gets user by id from database
         return userRepository.save(user);
     }
-
+    public List<User> getAllUsersbyCriteria(String username) {
+        if (username == null) {
+            return userRepository.findAll();
+        }
+        return userRepository.findByusername(username);
+    }
     }
 
 

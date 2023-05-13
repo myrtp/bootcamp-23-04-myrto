@@ -22,9 +22,9 @@ public class UsersController {
 
 
     @GetMapping("")
-    public List<User> getAllUsers() {
+    public List<User> getAllUsersbyCriteria(@RequestParam(required = false) String username) {
 
-        return userService.getAllUsers();
+        return userService.getAllUsersbyCriteria(username);
     }
 
     @GetMapping("/{id}")
