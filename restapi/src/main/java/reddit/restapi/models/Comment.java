@@ -10,13 +10,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private long id;
+    private Long id;
     @Basic
     @Column(name = "post_id")
-    private long postId;
+    private Long postId;
     @Basic
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
     @Basic
     @Column(name = "text")
     private String text;

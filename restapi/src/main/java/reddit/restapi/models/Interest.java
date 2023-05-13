@@ -8,12 +8,12 @@ public class Interest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private long id;
+    private Long id;
     @Basic
     @Column(name = "text")
     private String text;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

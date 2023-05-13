@@ -13,10 +13,10 @@ public class Post {
     private long id;
     @Basic
     @Column(name = "subreddit_id")
-    private long subredditId;
+    private Long subredditId;
     @Basic
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
     @Basic
     @Column(name = "title")
     private String title;
@@ -33,7 +33,7 @@ public class Post {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class Post {
         this.id = id;
     }
 
-    public long getSubredditId() {
+    public Long getSubredditId() {
         return subredditId;
     }
 
@@ -49,7 +49,7 @@ public class Post {
         this.subredditId = subredditId;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
