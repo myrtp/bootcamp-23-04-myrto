@@ -6,7 +6,7 @@
   <persistence-unit name="default">
 
       <class>reddit.restapi.models.Subreddit</class>
-      <class>reddit.restapi.models.Users</class>
+      <class>reddit.restapi.models.User</class>
       <class>reddit.restapi.models.Comment</class>
       <class>reddit.restapi.models.Interest</class>
       <class>reddit.restapi.models.Post</class>

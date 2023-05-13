@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS bootcamp2304myrto;
 
-CREATE TABLE IF NOT EXISTS bootcamp2304myrto.users (
+CREATE TABLE IF NOT EXISTS bootcamp2304myrto.user (
           id bigserial primary key,
           username text not null,
           email text not null,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS bootcamp2304myrto.post (
       image text not null,
       created_at timestamp not null,
       updated_at  timestamp,
-      foreign key (user_id) references bootcamp2304myrto.users(id),
+      foreign key (user_id) references bootcamp2304myrto.user(id),
       foreign key (subreddit_id) references bootcamp2304myrto.subreddit(id)
 
 );
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS bootcamp2304myrto.comment (
          comm_reply text,
          created_at timestamp not null,
          updated_at  timestamp,
-         foreign key (user_id) references bootcamp2304myrto.users(id),
+         foreign key (user_id) references bootcamp2304myrto.user(id),
          foreign key (post_id) references bootcamp2304myrto.post(id)
 
 );
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS bootcamp2304myrto.user_interest (
                id bigserial primary key,
                user_id bigint not null,
                interest_id bigint not null,
-               foreign key (user_id) references bootcamp2304myrto.users(id),
+               foreign key (user_id) references bootcamp2304myrto.user(id),
                foreign key (interest_id) references bootcamp2304myrto.interest(id)
 );
 
@@ -74,5 +74,5 @@ CREATE TABLE IF NOT EXISTS bootcamp2304myrto.user_subred (
          user_id bigint not null,
          role text not null,
          foreign key (subreddit_id) references bootcamp2304myrto.subreddit(id),
-         foreign key (user_id) references bootcamp2304myrto.users(id)
+         foreign key (user_id) references bootcamp2304myrto.user(id)
 );

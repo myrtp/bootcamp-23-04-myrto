@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "users", schema = "bootcamp2304myrto")
-public class Users {
+public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -80,14 +80,14 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Users users = (Users) o;
+        User user = (User) o;
 
-        if (id != users.id) return false;
-        if (username != null ? !username.equals(users.username) : users.username != null) return false;
-        if (email != null ? !email.equals(users.email) : users.email != null) return false;
-        if (password != null ? !password.equals(users.password) : users.password != null) return false;
-        if (dob != null ? !dob.equals(users.dob) : users.dob != null) return false;
-        if (profileimage != null ? !profileimage.equals(users.profileimage) : users.profileimage != null) return false;
+        if (id != user.id) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (dob != null ? !dob.equals(user.dob) : user.dob != null) return false;
+        if (profileimage != null ? !profileimage.equals(user.profileimage) : user.profileimage != null) return false;
 
         return true;
     }

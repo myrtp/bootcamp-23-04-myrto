@@ -1,7 +1,7 @@
 package reddit.restapi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reddit.restapi.models.Users;
+import reddit.restapi.models.User;
 import reddit.restapi.services.UsersService;
 import reddit.restapi.repositories.UserRepo;
 import java.util.List;
@@ -22,27 +22,27 @@ public class UsersController {
 
 
     @GetMapping("")
-    public List<Users> getAllUsers() {
+    public List<User> getAllUsers() {
 
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable Long id) throws Exception {
+    public User getUserById(@PathVariable Long id) throws Exception {
 
         //code that gets user by id from database
         return userService.getUserById(id);
     }
 
     @PostMapping("")
-    public Users createUser(@RequestBody Users user) throws Exception {
+    public User createUser(@RequestBody User user) throws Exception {
 
 
         return userService.createUser(user);
     }
 
     @PutMapping("/{id}")
-    public Users updateUser(@RequestBody Users user, @PathVariable Long id) throws Exception {
+    public User updateUser(@RequestBody User user, @PathVariable Long id) throws Exception {
 
         //code that gets user by id from database
         return userRepository.save(user);
