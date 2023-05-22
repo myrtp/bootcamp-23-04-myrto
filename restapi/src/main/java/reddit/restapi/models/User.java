@@ -3,7 +3,17 @@ package reddit.restapi.models;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Optional;
 
+//@ManyToMany
+//@ManyToMany
+
+//@JoinTable(
+//        schema = "bootcamp2304",
+//        name = "apartment_apartment_attribute",
+//        joinColumns = @JoinColumn(name = "apartment_id"),
+//        inverseJoinColumns = @JoinColumn(name = "attribute_id"))
+//private List<ApartmentAttribute> apartmentAttributes;
 @Entity
 @Table(name = "users", schema = "bootcamp2304myrto")
 public class User {
@@ -103,3 +113,4 @@ public class User {
         return result;
     }
 }
+

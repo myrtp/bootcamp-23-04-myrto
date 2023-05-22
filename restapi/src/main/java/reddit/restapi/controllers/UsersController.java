@@ -21,11 +21,11 @@ public class UsersController {
     }
 
 
-    @GetMapping("")
-    public List<User> getAllUsersbyCriteria(@RequestParam(required = false) String username) {
-
-        return userService.getAllUsersbyCriteria(username);
-    }
+//    @GetMapping("")
+//    public List <User> getAllUsersbyCriteria(@RequestParam(required = false) String username) {
+//
+//        return userService.getAllUsersbyCriteria(username);
+//    }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) throws Exception {
@@ -35,19 +35,21 @@ public class UsersController {
     }
 
     @PostMapping("")
-    public User createUser(@RequestBody User user) throws Exception {
+    public User createUser(@RequestBody User newUser) throws Exception {
 
 
-        return userService.createUser(user);
+        return userService.signUpUser(newUser);
     }
 
     @PutMapping("/{id}")
     public User updateUser(@RequestBody User user, @PathVariable Long id) throws Exception {
 
         //code that gets user by id from database
-        return userRepository.save(user);
+        return userService.updateUser(user,id);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteUserbyId(@RequestBody User user, @PathVariable Long id) throws Exception {
+    }
 
 }
