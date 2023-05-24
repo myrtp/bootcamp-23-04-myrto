@@ -5,12 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import reddit.restapi.controllers.AuthenticationController;
 import reddit.restapi.controllers.UsersController;
 import reddit.restapi.models.User;
 import reddit.restapi.repositories.UserRepo;
 import reddit.restapi.services.UsersService;
 
-@ComponentScan(basePackageClasses = {UsersController.class, UsersService.class, UserRepo.class})
+@ComponentScan(basePackageClasses = {UsersController.class, UsersService.class, UserRepo.class, WebSecurityConfig.class})
 @EnableJpaRepositories(basePackageClasses = {UserRepo.class})
 @EntityScan(basePackageClasses = {User.class})
 @SpringBootApplication

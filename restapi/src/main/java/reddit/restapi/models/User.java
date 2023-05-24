@@ -1,8 +1,11 @@
 package reddit.restapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 //@ManyToMany
@@ -16,6 +19,9 @@ import java.util.Optional;
 //private List<ApartmentAttribute> apartmentAttributes;
 @Entity
 @Table(name = "users", schema = "bootcamp2304myrto")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -36,6 +42,9 @@ public class User {
     @Basic
     @Column(name = "profileimage")
     private String profileimage;
+
+//    @ManyToMany(mappedBy = "User")
+//    private List<Subreddit> Subreddit;
 
     public Long getId() {
         return id;

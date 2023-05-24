@@ -18,14 +18,11 @@ public class SubredditService {
     public List<Subreddit> getAllSubs() {
         return  subredditRepo.findAll();
     }
-//    @Autowired
-//    public UsersService(UserRepo userRepository) {
-//        this.userRepository = userRepository;
-//    }
-//
-//    public List<User> getAllUsers() {
-//        return  userRepository.findAll();
-//    }
+
+    public Subreddit getSubredditById(Long id) throws Exception {
+        return subredditRepo.findById(id).orElseThrow(() -> new RuntimeException("Sub not found"));
+    }
+
 
 
 }

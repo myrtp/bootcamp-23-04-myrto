@@ -5,7 +5,7 @@ import reddit.restapi.models.User;
 import reddit.restapi.services.UsersService;
 import reddit.restapi.repositories.UserRepo;
 import java.util.List;
-
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -20,16 +20,16 @@ public class UsersController {
         this.userRepository = userRepository;
     }
 
+    @GetMapping("")
+    public Optional <User> getAllUsersbyCriteria(@RequestParam(required = false) String username) throws Exception
+    {
 
-//    @GetMapping("")
-//    public List <User> getAllUsersbyCriteria(@RequestParam(required = false) String username) {
-//
-//        return userService.getAllUsersbyCriteria(username);
-//    }
+        return Optional.ofNullable(userService.getAllUsersbyCriteria(username));
+    }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) throws Exception {
-
+ 
         //code that gets user by id from database
         return userService.getUserById(id);
     }

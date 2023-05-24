@@ -1,11 +1,19 @@
 package reddit.restapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "subreddit", schema = "bootcamp2304myrto")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class Subreddit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -19,7 +27,15 @@ public class Subreddit {
     private String title;
     @Basic
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Instant createdAt;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            schema = "bootcamp2304myrto",
+            name = "user_subred",
+            joinColumns = @JoinColumn(name = "subreddit_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> users;
 
     public long getId() {
         return id;
@@ -45,12 +61,24 @@ public class Subreddit {
         this.title = title;
     }
 
-    public Timestamp getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -69,12 +97,10 @@ public class Subreddit {
         return true;
     }
 
+
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        return result;
+        return Objects.hash(id, description, title, createdAt, users);
     }
 }
+

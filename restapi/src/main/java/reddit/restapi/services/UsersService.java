@@ -1,15 +1,19 @@
 package reddit.restapi.services;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import reddit.restapi.exceptions.RestAppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reddit.restapi.models.User;
+import reddit.restapi.models.security.UserPrincipalDTO;
 import reddit.restapi.repositories.UserRepo;
 import java.util.List;
 import java.util.regex.Pattern;
-//implements UserDetailsService
+
 @Service
-public class UsersService {
+public class UsersService implements UserDetailsService {
     private UserRepo userRepository;
 
 
@@ -29,7 +33,7 @@ public class UsersService {
 //    }
 
     public User getUserById(Long id) throws Exception {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
     }
 
     public static boolean emailValidation(String email, String regexPattern) {
@@ -60,7 +64,6 @@ public class UsersService {
             throw new RuntimeException("USERNAME EXISTS!!!!");
         }
 
-            //code that gets user by id from database
             return userRepository.save(newUser);
 
     }
@@ -83,22 +86,23 @@ public class UsersService {
         return userRepository.save(requestUser);
 
     }
-        public User getUserByEmail(String email) throws Exception {
-            return userRepository.findByEmail1(email).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
+        public User getAllUsersbyCriteria(String username) throws Exception {
+            return userRepository.findAnyByUsername(username).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
         }
 
 
-//        @Override
-//        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//            User userToBeLoggedIn = null;
-//            try {
-//                userToBeLoggedIn = this.getUserByEmail(username);
-//            } catch (Exception e) {
-//                throw new UsernameNotFoundException("USER_NOT_FOUND", e);
-//            }
-//
-//
-//            return userRepository.save(requestUser);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User userToBeLoggedIn = null;
+        try {
+            userToBeLoggedIn = this.getAllUsersbyCriteria(username);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("USER_NOT_FOUND", e);
+        }
+
+
+        return new UserPrincipalDTO(userToBeLoggedIn);
+    }
         }
         //code that gets user by id from database
 
