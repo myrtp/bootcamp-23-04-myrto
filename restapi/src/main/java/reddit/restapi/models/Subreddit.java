@@ -1,5 +1,6 @@
 package reddit.restapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -29,13 +30,14 @@ public class Subreddit {
     @Column(name = "created_at")
     private Instant createdAt;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            schema = "bootcamp2304myrto",
-            name = "user_subred",
-            joinColumns = @JoinColumn(name = "subreddit_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            schema = "bootcamp2304myrto",
+//            name = "user_subred",
+//            joinColumns = @JoinColumn(name = "subreddit_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    @JsonBackReference
+//    private List<User> users;
 
     public long getId() {
         return id;
@@ -73,13 +75,6 @@ public class Subreddit {
         this.id = id;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -100,7 +95,7 @@ public class Subreddit {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, title, createdAt, users);
+        return Objects.hash(id, description, title, createdAt);
     }
 }
 

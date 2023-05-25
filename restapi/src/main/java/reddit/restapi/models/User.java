@@ -1,22 +1,15 @@
 package reddit.restapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-//@ManyToMany
-//@ManyToMany
-
-//@JoinTable(
-//        schema = "bootcamp2304",
-//        name = "apartment_apartment_attribute",
-//        joinColumns = @JoinColumn(name = "apartment_id"),
-//        inverseJoinColumns = @JoinColumn(name = "attribute_id"))
-//private List<ApartmentAttribute> apartmentAttributes;
 @Entity
 @Table(name = "users", schema = "bootcamp2304myrto")
 //@JsonIdentityInfo(
@@ -38,13 +31,11 @@ public class User {
     private String password;
     @Basic
     @Column(name = "dob")
-    private Timestamp dob;
+    private Instant dob;
     @Basic
     @Column(name = "profileimage")
     private String profileimage;
 
-//    @ManyToMany(mappedBy = "User")
-//    private List<Subreddit> Subreddit;
 
     public Long getId() {
         return id;
@@ -78,11 +69,11 @@ public class User {
         this.password = password;
     }
 
-    public Timestamp getDob() {
+    public Instant getDob() {
         return dob;
     }
 
-    public void setDob(Timestamp dob) {
+    public void setDob(Instant dob) {
         this.dob = dob;
     }
 
