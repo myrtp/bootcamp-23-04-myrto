@@ -10,8 +10,10 @@ import reddit.restapi.controllers.UsersController;
 import reddit.restapi.models.User;
 import reddit.restapi.repositories.UserRepo;
 import reddit.restapi.services.UsersService;
+import reddit.restapi.util.AuthorizationChecks;
 
-@ComponentScan(basePackageClasses = {UsersController.class, UsersService.class, UserRepo.class, WebSecurityConfig.class})
+@ComponentScan(basePackageClasses = {UsersController.class, UsersService.class, UserRepo.class,
+		WebSecurityConfig.class, AuthorizationChecks.class})
 @EnableJpaRepositories(basePackageClasses = {UserRepo.class})
 @EntityScan(basePackageClasses = {User.class})
 @SpringBootApplication

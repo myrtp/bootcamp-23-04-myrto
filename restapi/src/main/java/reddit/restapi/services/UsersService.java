@@ -1,7 +1,12 @@
 package reddit.restapi.services;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import reddit.restapi.exceptions.RestAppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +15,7 @@ import reddit.restapi.models.User;
 import reddit.restapi.models.security.UserPrincipalDTO;
 import reddit.restapi.repositories.UserRepo;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
@@ -22,18 +28,13 @@ public class UsersService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-        public List<User> getAllUsers() {
-        return  userRepository.findAll();
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
-//    public List<User> getAllUsersbyCriteria(String username) {
-//        if (username == null) {
-//            return  userRepository.findAll();
-//        }
-//        return (List<User>) userRepository.findByusername(username);
-//    }
 
     public User getUserById(Long id) throws Exception {
-        return userRepository.findById(id).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
+        return userRepository.findById(id).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND,
+                "ERROR_CODE_USER_NOT_FOUND", "User not found"));
     }
 
     public static boolean emailValidation(String email, String regexPattern) {
@@ -43,36 +44,38 @@ public class UsersService implements UserDetailsService {
     public User signUpUser(User newUser) throws Exception {
 
 
-        if (newUser.getId() != null) {throw new Exception("New user should not have id. I WILL DECIDE IT!!!!");
+        if (newUser.getId() != null) {
+            throw new Exception("New user should not have id. I WILL DECIDE IT!!!!");
         }
-        String regexPattern =  "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+        String regexPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         boolean isValidEmail = emailValidation(newUser.getEmail(), regexPattern);
 
         if (isValidEmail != true) {
             throw new Exception("Wrong email!!!!!");
         }
 
-        User  storedUserEmail= userRepository.findByEmail(newUser.getEmail());
+        User storedUserEmail = userRepository.findByEmail(newUser.getEmail());
 
-        if(storedUserEmail != null){
-            throw new RuntimeException("EMAIL EXISTS!!!!");
+        if (storedUserEmail != null) {
+            throw new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_FORBIDDEN", "EMAIL EXISTS!");
         }
 
-        User  storedUserUsername= userRepository.findByusername(newUser.getUsername());
+        User storedUserUsername = userRepository.findByusername(newUser.getUsername());
 
-        if(storedUserUsername != null){
-            throw new RuntimeException("USERNAME EXISTS!!!!");
+        if (storedUserUsername != null) {
+            throw new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_FORBIDDEN", "USERNAME EXISTS!");
         }
 
-            return userRepository.save(newUser);
+        return userRepository.save(newUser);
 
     }
 
-//   Update User
+    //   Update User
     public User updateUser(User requestUser, Long id) throws Exception {
 
         if (!requestUser.getId().equals(id)) {
-            throw new Exception("ID DOESN'T MATCH!!!TRY AGAIN!");
+            throw new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_FORBIDDEN", "REQUEST FORBIDDEN!");
         }
         User userfromDB = this.getUserById(id);
 
@@ -82,20 +85,20 @@ public class UsersService implements UserDetailsService {
         userfromDB.setPassword(requestUser.getPassword());
         userfromDB.setProfileimage(requestUser.getProfileimage());
         userfromDB.setEmail(requestUser.getEmail());
-//    userfromDB.setDob(requestUser.Instant.now());
         return userRepository.save(requestUser);
 
     }
-        public User getAllUsersbyCriteria(String username) throws Exception {
-            return userRepository.findAnyByUsername(username).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
-        }
 
+    public User getAllUserbyUsername(String username) throws Exception {
+        return userRepository.findAnyByUsername(username).orElseThrow(()
+                -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userToBeLoggedIn = null;
         try {
-            userToBeLoggedIn = this.getAllUsersbyCriteria(username);
+            userToBeLoggedIn = this.getAllUserbyUsername(username);
         } catch (Exception e) {
             throw new UsernameNotFoundException("USER_NOT_FOUND", e);
         }
@@ -103,16 +106,18 @@ public class UsersService implements UserDetailsService {
 
         return new UserPrincipalDTO(userToBeLoggedIn);
     }
-        }
-        //code that gets user by id from database
 
+    @Transactional
+    public void deleteUserById(Long id) {
 
+        userRepository.deleteById(id);
+    }
 
+    public User getUserfromAuthentication(Authentication authentication) throws Exception{
+        String username =
+                (String) ((Jwt)((JwtAuthenticationToken)authentication).getPrincipal()).getClaims().get("username");
+        return getAllUserbyUsername(username);
+    }
 
+}
 
-
-
-//    public ApartmentAttribute getAttributeByName(String name) throws Exception {
-//        return apartmentAttributeRepository.findByName(name)
-//                .orElseThrow(() -> new Exception("Attribute not found"));
-//    }

@@ -30,14 +30,14 @@ public class Subreddit {
     @Column(name = "created_at")
     private Instant createdAt;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//            schema = "bootcamp2304myrto",
-//            name = "user_subred",
-//            joinColumns = @JoinColumn(name = "subreddit_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id"))
-//    @JsonBackReference
-//    private List<User> users;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            schema = "bootcamp2304myrto",
+            name = "user_subred",
+            joinColumns = @JoinColumn(name = "subreddit_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonBackReference
+    private List<UserSubred> UserSubredAuth;
 
     public long getId() {
         return id;
@@ -75,6 +75,13 @@ public class Subreddit {
         this.id = id;
     }
 
+    public List<UserSubred> getUserSubredAuth() {
+        return UserSubredAuth;
+    }
+
+    public void setUserSubredAuth(List<UserSubred> UserSubredAuth) {
+        this.UserSubredAuth = UserSubredAuth;
+    }
 
     @Override
     public boolean equals(Object o) {

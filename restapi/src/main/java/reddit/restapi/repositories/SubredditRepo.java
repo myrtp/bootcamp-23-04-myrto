@@ -3,7 +3,7 @@ import org.springframework.data.jpa.repository.Query;
 import reddit.restapi.models.Subreddit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import reddit.restapi.models.User;
+import reddit.restapi.models.UserSubred;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +16,9 @@ public interface SubredditRepo extends JpaRepository<Subreddit, Long> {
             value = "select * from bootcamp2304myrto.subreddit where title = ?1")
     public Optional<Subreddit> findAnyByTitle(String title);
 
+
     Subreddit getSubredditById(Long id);
+
+
 }
 

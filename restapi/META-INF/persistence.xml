@@ -10,6 +10,7 @@
       <class>reddit.restapi.models.Comment</class>
       <class>reddit.restapi.models.Interest</class>
       <class>reddit.restapi.models.Post</class>
+      <class>reddit.restapi.models.UserSubred</class>
       <properties>
           <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
           <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
@@ -29,4 +30,25 @@
           <property name="eclipselink.jdbc.password" value="1234"/>
       </properties>
   </persistence-unit>
+    <persistence-unit name="persistenceUnit">
+        <class>reddit.restapi.models.UserSubredEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="toplink.jdbc.user" value="postgres"/>
+            <property name="toplink.jdbc.password" value="1234"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="1234"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="postgres"/>
+            <property name="openjpa.ConnectionPassword" value="1234"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="eclipselink.jdbc.user" value="postgres"/>
+            <property name="eclipselink.jdbc.password" value="1234"/>
+        </properties>
+    </persistence-unit>
 </persistence>

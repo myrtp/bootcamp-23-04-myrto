@@ -1,12 +1,11 @@
 package reddit.restapi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reddit.restapi.models.Subreddit;
 import reddit.restapi.repositories.SubredditRepo;
 import reddit.restapi.services.SubredditService;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/subreddits")
@@ -29,6 +28,14 @@ import reddit.restapi.services.SubredditService;
 
         return subreddit;
     }
+    @GetMapping("")
+    public Optional <Subreddit> getAllSubredditsbyCriteria(@RequestParam(required = false) String title) throws Exception
+    {
 
-}
+        return Optional.ofNullable(subredditService.getAllSubredditsbyCriteria(title));
+
+    }
+
+    }
+
 
