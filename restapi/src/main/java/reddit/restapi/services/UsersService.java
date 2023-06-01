@@ -12,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reddit.restapi.models.User;
+import reddit.restapi.models.dtos.SignUpUserDTO;
 import reddit.restapi.models.security.UserPrincipalDTO;
 import reddit.restapi.repositories.UserRepo;
+import reddit.restapi.util.SignUpDTOTransformer;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -22,9 +25,11 @@ import java.util.regex.Pattern;
 public class UsersService implements UserDetailsService {
     private UserRepo userRepository;
 
+    private SignUpDTOTransformer signUpDTOTransformer;
 
     @Autowired
-    public UsersService(UserRepo userRepository) {
+    public UsersService(UserRepo userRepository,SignUpDTOTransformer signUpDTOTransformer) {
+        this.userRepository = userRepository;
         this.userRepository = userRepository;
     }
 
@@ -41,7 +46,7 @@ public class UsersService implements UserDetailsService {
         return Pattern.compile(regexPattern).matcher(email).matches();
     }
 
-    public User signUpUser(User newUser) throws Exception {
+    public User createUser(User newUser) throws Exception {
 
 
         if (newUser.getId() != null) {
@@ -119,5 +124,14 @@ public class UsersService implements UserDetailsService {
         return getAllUserbyUsername(username);
     }
 
+    public User signUpUser(SignUpUserDTO user) throws Exception {
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            throw new RestAppException(HttpStatus.BAD_REQUEST, "ERROR_CODE_PASSWORD_MISMATCH", "Passwords do not match");
+        }
+        User newUser = signUpDTOTransformer.toEntity(user);
+        return this.createUser(newUser);
+//        newUser.setRole("ROLE_USER");
+
+    }
 }
 

@@ -56,7 +56,7 @@ public class UsersController {
     public User createUser(@RequestBody User newUser) throws Exception {
 
 
-        return userService.signUpUser(newUser);
+        return userService.createUser(newUser);
     }
 
     @PutMapping("/{id}")

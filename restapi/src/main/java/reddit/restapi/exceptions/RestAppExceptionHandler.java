@@ -1,4 +1,6 @@
 package reddit.restapi.exceptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,9 +11,13 @@ import java.time.Instant;
 
 @ControllerAdvice
 public class RestAppExceptionHandler extends ResponseEntityExceptionHandler{
+     private Logger logger = LoggerFactory.getLogger(RestAppExceptionHandler.class);
 
     @ExceptionHandler(value = { Exception.class, RuntimeException.class })
     protected ResponseEntity<Object> handleConflict(Exception ex, WebRequest request) {
+
+        logger.info("hello");
+        logger.debug("hello debug");
 
         SpringAppErrorMessageDTO error = SpringAppErrorMessageDTO.builder()
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
