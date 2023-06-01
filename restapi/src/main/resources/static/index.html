@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Grid Template</title>
+    <style>
+        body {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-container{
+            background-color: #f2f2f2;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            align-items: center;
+        }
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-gap: 1rem;
+            padding: 1rem;
+        }
+
+        aside {
+            background-color: #e6e6e6;
+            padding: 1rem;
+        }
+
+        main {
+            background-color: #ffffff;
+            padding: 1rem;
+            /*    red vorder of 1 px*/
+            border: 1px solid red;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+<header class="header-container">
+    <!-- Your header content goes here -->
+    <h1>Header</h1>
+
+    <nav>
+        <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/index.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Home</a> |
+        <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/post.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Post</a> |
+        <a href="/js/">JavaScript</a> |
+        <a href="/jquery/">jQuery</a>
+    </nav>
+</header>
+
+<div class="content-wrapper">
+
+    <aside>
+        <!-- Your aside content goes here -->
+        <h2>Aside</h2>
+    </aside>
+
+    <main>
+        <!-- Your main content goes here -->
+        <h2>Main</h2>
+        <p>This is the Home page</p>
+    </main>
+</div>
+
+
+<footer>
+    <!-- Your footer content goes here -->
+    <h2>Footer</h2>
+</footer>
+</body>
+</html>
+

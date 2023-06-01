@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Grid Template</title>
+    <style>
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 2fr 10fr; /* Specifies two equal-width columns */
+            grid-gap: 1px; /* Adds a gap between the columns */
+        }
+
+        body {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            background-color: #f2f2f2;
+            padding: 1rem;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-gap: 1rem;
+            padding: 1rem;
+        }
+
+        aside {
+            background-color: #e6e6e6;
+            padding: 1rem;
+        }
+
+        main {
+            background-color: #ffffff;
+            padding: 1rem;
+            /*    red vorder of 1 px*/
+            border: 1px solid red;
+        }
+
+        .post-content {
+            border: 1px solid red;
+            padding: 1rem;
+        }
+
+        .post-metadata {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            font-size: 0.7rem;
+            color: rgba(128, 128, 128, 0.8);
+        }
+
+        .comment-content {
+            border: 1px solid red;
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-left: 2rem;
+        }
+
+        .subreddit-title {
+            border: 1px ;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            margin-left: 0.005rem;
+        }
+        .new-comment-container {
+            border: 1px solid red;
+            padding: 1rem;
+            margin: 1rem;
+            margin-left: 2rem;
+        }
+
+        .new-comment-input {
+            width: 100%;
+            height: 100px;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 1rem;
+
+
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- Your header content goes here -->
+    <img src="http://localhost:63342/bootcamp.23.04/spring-rest-app/src/main/resources/static/send.png?_ijt=2uj6oal4v77bh3geh462kdm10p&_ij_reload=RELOAD_ON_SAVE" alt="Logo" width="40" height="40">
+    <h1>Header</h1>
+
+    <nav>
+        <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/index.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Search_User</a>|
+        <!--        <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/post.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Post</a>|-->
+        <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/index.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Search_Subreddit</a>|
+        <a href="/js/">Profile</a> |
+    </nav>
+</header>
+
+<div class="content-wrapper">
+
+    <aside>
+        <!-- Your aside content goes here -->
+        <h2>Aside</h2>
+
+        <div class="new-subreddit">
+            <nav>
+
+                <a href="/js/">Create Subreddit</a>
+            </nav>
+
+        </div>
+
+
+        <div class="subreddit-title">
+
+            <nav>
+
+                <a href="/js/">r/subreddit_title</a>
+            </nav>
+        </div>
+
+        <div class="subreddit-title">
+
+            <nav>
+
+                <a href="/js/">r/subreddit_title</a>
+            </nav>
+        </div>
+
+
+        <div class="subreddit-title">
+
+            <nav>
+
+                <a href="/js/">r/subreddit_title</a>
+            </nav>
+        </div>
+    </aside>
+
+    <main>
+
+        <!-- Your main content goes here -->
+        <h2>Post_Title</h2>
+        <div class="grid-container">
+            <div class="username">
+                <p>User_username</p>
+            </div>
+            <div class="post_metadata">
+                <!--            <div>Created_at</div>-->
+                <div>2023-05-23</div>
+            </div>
+        </div>
+
+        <div class="post-content">
+            <p>Post_Text</p>
+            <img src="http://localhost:63342/bootcamp.23.04/spring-rest-app/src/main/resources/static/send.png?_ijt=2uj6oal4v77bh3geh462kdm10p&_ij_reload=RELOAD_ON_SAVE" alt="Logo" width="40" height="40">
+            <!--            <div class="post-metadata">-->
+            <!--                <div>Created_at</div>-->
+            <!--                <div>2023-05-23</div>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="post-comments-wrapper">
+            <div class="comment-content">
+                <div class="username">
+                    <p>User_username</p>
+                    Grid Column 1
+                </div>
+                <div class="post_metadata">
+                    <!--            <div>Created_at</div>-->
+                    <div>2023-05-23</div>
+                    Grid Column 2
+                </div>
+                <p>Comment_text</p>
+                <div class="post-metadata">
+                    <p>Updated:</p>
+                    <p>2023-05-23</p>
+                </div>
+
+            </div>
+            <div class="comment-content">
+                <p>This is my 2nd comment</p>
+                <div class="post-metadata">
+                    <p>Time:</p>
+                    <p>2023-05-23</p>
+                </div>
+                <div class="post-metadata">
+                    <p>Author:</p>
+                    <p>John</p>
+                </div>
+            </div>
+
+
+            <div class="new-comment-container">
+                <form>
+                    <label for="new-comment-text">Comment Text:</label><br>
+                    <textarea class="new-comment-input" type="text" id="new-comment-text" rows="3"
+                              name="new-comment-text"></textarea><br>
+
+                    <input onclick="alert('Creating new comment....')" type="image"
+                           src="http://localhost:63342/bootcamp.23.04/spring-rest-app/src/main/resources/static/send.png?_ijt=2uj6oal4v77bh3geh462kdm10p&_ij_reload=RELOAD_ON_SAVE"
+                           alt="Submit" width="48" height="48">
+
+                </form>
+            </div>
+        </div>
+
+
+    </main>
+</div>
+
+
+<footer>
+    <!-- Your footer content goes here -->
+    <h2>Footer</h2>
+</footer>
+</body>
+</html>
