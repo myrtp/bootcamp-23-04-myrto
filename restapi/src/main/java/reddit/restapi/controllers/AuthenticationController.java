@@ -48,6 +48,7 @@ public class AuthenticationController {
                 .claim("username", authentication.getName())
                 .claim("authorities", authentication.getAuthorities())
                 .claim("a", "b")
+                .claim("userId", userPrincipalDTO.getUserId())
                 .build();
 
         String jwt = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

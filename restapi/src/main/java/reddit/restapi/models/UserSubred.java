@@ -2,6 +2,8 @@ package reddit.restapi.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "user_subred", schema = "bootcamp2304myrto")
 public class UserSubred {
@@ -12,9 +14,9 @@ public class UserSubred {
     @Basic
     @Column(name = "subreddit_id")
     private long subredditId;
-    @Basic
-    @Column(name = "user_id")
-    private long userId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
     @Basic
     @Column(name = "role")
     private String role;
@@ -35,12 +37,12 @@ public class UserSubred {
         this.subredditId = subredditId;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getRole() {
@@ -55,23 +57,12 @@ public class UserSubred {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         UserSubred that = (UserSubred) o;
-
-        if (id != that.id) return false;
-        if (subredditId != that.subredditId) return false;
-        if (userId != that.userId) return false;
-        if (role != null ? !role.equals(that.role) : that.role != null) return false;
-
-        return true;
+        return id == that.id && subredditId == that.subredditId && Objects.equals(user, that.user) && Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (subredditId ^ (subredditId >>> 32));
-        result = 31 * result + (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        return result;
+        return Objects.hash(id, subredditId, user, role);
     }
 }

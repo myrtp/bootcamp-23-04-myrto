@@ -6,8 +6,13 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: 2fr 10fr; /* Specifies two equal-width columns */
+            grid-template-columns: 2fr 15fr; /* Specifies two equal-width columns */
             grid-gap: 1px; /* Adds a gap between the columns */
+        }
+
+        .username,
+        .post_metadata {
+            align-self: center;
         }
 
         body {
@@ -23,7 +28,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             align-items: center;
-            background-color: #f2f2f2;
+            background-color: #ffffff;;
             padding: 1rem;
         }
 
@@ -35,7 +40,8 @@
         }
 
         aside {
-            background-color: #e6e6e6;
+            border: 1px solid red;
+            background-color: #ffffff;
             padding: 1rem;
         }
 
@@ -84,7 +90,8 @@
         }
 
         footer {
-            background-color: #f2f2f2;
+            border: 1px solid red;
+            background-color: #ffffff;;
             padding: 1rem;
 
 
@@ -94,12 +101,11 @@
 <body>
 <header>
     <!-- Your header content goes here -->
-    <img src="http://localhost:63342/bootcamp.23.04/spring-rest-app/src/main/resources/static/send.png?_ijt=2uj6oal4v77bh3geh462kdm10p&_ij_reload=RELOAD_ON_SAVE" alt="Logo" width="40" height="40">
-    <h1>Header</h1>
+    <img src="https://www.redditinc.com/assets/images/site/reddit-logo.png" alt="Logo" width="60" height="60">
+    <h1>Homepage</h1>
 
     <nav>
         <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/index.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Search_User</a>|
-        <!--        <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/post.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Post</a>|-->
         <a href="/bootcamp.23.04/spring-rest-app/src/main/resources/static/index.html?_ijt=junc7q50a8ibn08ia2futia7oh&_ij_reload=RELOAD_ON_SAVE">Search_Subreddit</a>|
         <a href="/js/">Profile</a> |
     </nav>
@@ -109,7 +115,7 @@
 
     <aside>
         <!-- Your aside content goes here -->
-        <h2>Aside</h2>
+        <h2>Communities</h2>
 
         <div class="new-subreddit">
             <nav>
@@ -155,7 +161,6 @@
                 <p>User_username</p>
             </div>
             <div class="post_metadata">
-                <!--            <div>Created_at</div>-->
                 <div>2023-05-23</div>
             </div>
         </div>

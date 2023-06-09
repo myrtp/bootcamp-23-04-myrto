@@ -6,6 +6,7 @@ import reddit.restapi.models.User;
 import java.util.Collection;
 import java.util.List;
 public class UserPrincipalDTO implements UserDetails{
+    private Long userId;
     private String email;
     private String password;
     private String username;
@@ -13,10 +14,19 @@ public class UserPrincipalDTO implements UserDetails{
 
 
     public UserPrincipalDTO(User user) {
+        this.userId = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.username = user.getUsername();
         this.authorities = List.of(new CustomGrantedAuthorityDTO("USER_AUTHENTICATION"));
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override

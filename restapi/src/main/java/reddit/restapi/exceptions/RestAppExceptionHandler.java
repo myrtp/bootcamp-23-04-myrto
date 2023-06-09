@@ -16,8 +16,7 @@ public class RestAppExceptionHandler extends ResponseEntityExceptionHandler{
     @ExceptionHandler(value = { Exception.class, RuntimeException.class })
     protected ResponseEntity<Object> handleConflict(Exception ex, WebRequest request) {
 
-        logger.info("hello");
-        logger.debug("hello debug");
+        logger.error("Error:", ex);
 
         SpringAppErrorMessageDTO error = SpringAppErrorMessageDTO.builder()
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)

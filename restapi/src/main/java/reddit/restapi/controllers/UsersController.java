@@ -65,6 +65,12 @@ public class UsersController {
         return userService.updateUser(user, id);
     }
 
+    @GetMapping("/{id}/username")
+    public String getUsernameById(@PathVariable("id") Long userId) throws Exception{
+        return userService.getUsernameById(userId);
+    }
+
+
     @DeleteMapping("/{id}")
     public Map<String, String> deleteUserById(@PathVariable Long id, Authentication authentication) throws Exception{
         authorizationChecks.isTheSameUser(id, authentication);
@@ -76,4 +82,6 @@ public class UsersController {
 //        return message;
         return resp;
     }
+
+
 }

@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 import reddit.restapi.exceptions.RestAppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +40,16 @@ public class UsersService implements UserDetailsService {
         return userRepository.findById(id).orElseThrow(() -> new RestAppException(HttpStatus.NOT_FOUND,
                 "ERROR_CODE_USER_NOT_FOUND", "User not found"));
     }
+
+    public String getUsernameById(Long id) throws Exception {
+        User user = getUserById(id);
+        if (user != null) {
+            return user.getUsername();
+        }
+        throw new RestAppException(HttpStatus.NOT_FOUND,
+                "ERROR_CODE_USER_NOT_FOUND", "User not found"); // or throw an exception if desired
+    }
+
 
     public static boolean emailValidation(String email, String regexPattern) {
         return Pattern.compile(regexPattern).matcher(email).matches();
@@ -130,7 +139,6 @@ public class UsersService implements UserDetailsService {
         }
         User newUser = signUpDTOTransformer.toEntity(user);
         return this.createUser(newUser);
-//        newUser.setRole("ROLE_USER");
 
     }
 }
