@@ -3,6 +3,7 @@ package reddit.restapi.models;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 @Table(name = "post", schema = "bootcamp2304myrto")
@@ -10,7 +11,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private long id;
+    private Long id;
     @Basic
     @Column(name = "subreddit_id")
     private Long subredditId;
@@ -28,16 +29,16 @@ public class Post {
     private String image;
     @Basic
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Instant createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    private Instant updatedAt;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,7 +46,7 @@ public class Post {
         return subredditId;
     }
 
-    public void setSubredditId(long subredditId) {
+    public void setSubredditId(Long subredditId) {
         this.subredditId = subredditId;
     }
 
@@ -53,7 +54,7 @@ public class Post {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -81,19 +82,19 @@ public class Post {
         this.image = image;
     }
 
-    public Timestamp getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 

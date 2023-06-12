@@ -3,6 +3,8 @@ package reddit.restapi.models;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "comment", schema = "bootcamp2304myrto")
@@ -28,32 +30,35 @@ public class Comment {
     private String commReply;
     @Basic
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private Instant createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    private Instant updatedAt;
 
-    public long getId() {
+    @Basic
+    @Column(name = "subreddit_id")
+    private Long subreddit_id;
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(long postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -81,51 +86,42 @@ public class Comment {
         this.commReply = commReply;
     }
 
-    public Timestamp getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Long getSubredditId() {
+        return subreddit_id;
+    }
+
+    public void setSubredditId(Long subreddit_id) {
+        this.subreddit_id = subreddit_id;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Comment comment = (Comment) o;
-
-        if (id != comment.id) return false;
-        if (postId != comment.postId) return false;
-        if (userId != comment.userId) return false;
-        if (text != null ? !text.equals(comment.text) : comment.text != null) return false;
-        if (image != null ? !image.equals(comment.image) : comment.image != null) return false;
-        if (commReply != null ? !commReply.equals(comment.commReply) : comment.commReply != null) return false;
-        if (createdAt != null ? !createdAt.equals(comment.createdAt) : comment.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(comment.updatedAt) : comment.updatedAt != null) return false;
-
-        return true;
+        return Objects.equals(id, comment.id) && Objects.equals(postId, comment.postId) && Objects.equals(userId, comment.userId) && Objects.equals(text, comment.text) && Objects.equals(image, comment.image) && Objects.equals(commReply, comment.commReply) && Objects.equals(createdAt, comment.createdAt) && Objects.equals(updatedAt, comment.updatedAt) && Objects.equals(subreddit_id, comment.subreddit_id);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (postId ^ (postId >>> 32));
-        result = 31 * result + (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (text != null ? text.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (commReply != null ? commReply.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
-        return result;
+        return Objects.hash(id, postId, userId, text, image, commReply, createdAt, updatedAt, subreddit_id);
     }
+
+
 }

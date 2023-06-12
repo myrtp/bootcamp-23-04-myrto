@@ -76,3 +76,7 @@ CREATE TABLE IF NOT EXISTS bootcamp2304myrto.user_subred (
          foreign key (subreddit_id) references bootcamp2304myrto.subreddit(id),
          foreign key (user_id) references bootcamp2304myrto.user(id)
 );
+
+ALTER TABLE bootcamp2304myrto.comment
+    ADD COLUMN  subreddit_id bigint,
+        add  foreign key (subreddit_id) references bootcamp2304myrto.subreddit(id);

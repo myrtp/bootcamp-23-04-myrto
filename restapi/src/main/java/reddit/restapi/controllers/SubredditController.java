@@ -2,6 +2,7 @@ package reddit.restapi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import reddit.restapi.exceptions.RestAppException;
@@ -54,16 +55,16 @@ public class SubredditController {
     }
 
     @PostMapping("")
-    public Subreddit createSubreddit(@RequestBody Subreddit newSubreddit) throws Exception {
+    public Subreddit createSubreddit(@RequestBody Subreddit newSubreddit, Authentication authentication) throws Exception {
 
 
-        return subredditService.createSubreddit(newSubreddit);
+        return subredditService.createSubreddit(newSubreddit, authentication);
     }
 
     @PutMapping("/{id}")
-    public Subreddit updateSubreddit(@PathVariable Long id,  Authentication authentication, @RequestBody Subreddit subreddit) throws Exception {
+    public Subreddit updateSubreddit(@PathVariable Long id, Authentication authentication, @RequestBody Subreddit subreddit) throws Exception {
 
-     return subredditService.updateSubreddit(subreddit, id, authentication);
+        return subredditService.updateSubreddit(subreddit, id, authentication);
     }
 
     @GetMapping("{subredditId}/members")
@@ -71,17 +72,22 @@ public class SubredditController {
 
         return userSubredditService.getUserbySubredditId(subredditId);
     }
-//    @DeleteMapping("/{id}")
-//    public Map<String, String> deleteSubredditById(@PathVariable Long id, Authentication authentication) throws Exception{
-//        authorizationChecks.isTheSameUser(id, authentication);
-//        userService.deleteUserById(id);
-//        Map<String, String> resp = new HashMap<>();
-//        resp.put("deleteStatus", "Success");
-////        ObjectMapper mapper = new ObjectMapper();
-////        String message = mapper.writeValueAsString("deleted user");
-////        return message;
-//        return resp;
-//    }
+
+    @PostMapping("/{id}/join") public ResponseEntity<String> joinSubreddit(@PathVariable Long id,  Authentication authentication) throws Exception {
+        subredditService.joinSubreddit( authentication,  id);
+        return ResponseEntity.ok("joined subreddit");
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePostById(@PathVariable Long id, Authentication authentication) throws Exception {
+        subredditService.deleteSubredditById(id, authentication);
+        return ResponseEntity.ok("Subreddit deleted successfully");
+
+    }
+
+
 }
+
 
 

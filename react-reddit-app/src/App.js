@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import './assets/default.css'
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import PostContent from "./components/PostContent";
+import {BrowserRouter, Route, Routes from "react-router-dom";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+return (
+    <>
+      <Header/>
+      <div className="content-wrapper">
 
+        <aside>
+          {/*<!-- Your aside content goes here -->*/}
+          <h2>Aside</h2>
+        </aside>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/home" element={<PostContent/>}/>
+          </Routes>
+        </BrowserRouter>
+      </div>
+
+
+    </>
+);
+
+}
 export default App;

@@ -10,10 +10,10 @@ public class UserSubred {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private long id;
+    private Long id;
     @Basic
     @Column(name = "subreddit_id")
-    private long subredditId;
+    private Long subredditId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
@@ -21,19 +21,19 @@ public class UserSubred {
     @Column(name = "role")
     private String role;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getSubredditId() {
+    public Long getSubredditId() {
         return subredditId;
     }
 
-    public void setSubredditId(long subredditId) {
+    public void setSubredditId(Long subredditId) {
         this.subredditId = subredditId;
     }
 

@@ -59,26 +59,26 @@ public class UsersService implements UserDetailsService {
 
 
         if (newUser.getId() != null) {
-            throw new Exception("New user should not have id. I WILL DECIDE IT!!!!");
+            throw new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_FORBIDDEN", "USER ID EXISTS!");
         }
 
         String regexPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         boolean isValidEmail = emailValidation(newUser.getEmail(), regexPattern);
 
         if (isValidEmail != true) {
-            throw new Exception("Wrong email!!!!!");
+            throw new RestAppException(HttpStatus.BAD_REQUEST, "ERROR_CODE_BAD_REQUEST", "INVALID EMAIL!");
         }
 
         User storedUserEmail = userRepository.findByEmail(newUser.getEmail());
 
         if (storedUserEmail != null) {
-            throw new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_FORBIDDEN", "EMAIL EXISTS!");
+            throw new RestAppException(HttpStatus.FORBIDDEN, "ERROR_CODE_FORBIDDEN", "EMAIL EXISTS!");
         }
 
         User storedUserUsername = userRepository.findByusername(newUser.getUsername());
 
         if (storedUserUsername != null) {
-            throw new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_FORBIDDEN", "USERNAME EXISTS!");
+            throw new RestAppException(HttpStatus.FORBIDDEN, "ERROR_CODE_FORBIDDEN", "USERNAME EXISTS!");
         }
 
         return userRepository.save(newUser);
