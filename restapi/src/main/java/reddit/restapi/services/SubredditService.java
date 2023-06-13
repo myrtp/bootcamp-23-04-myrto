@@ -35,7 +35,7 @@ public class SubredditService {
 
     }
 
-    public List<Subreddit> getAllSubs() {
+    public List<Subreddit> getAllSubreddits() {
         return subredditRepo.findAll();
     }
 
@@ -101,7 +101,6 @@ public class SubredditService {
         userSubred.setUser(user);
         userSubred.setSubredditId(id);
         userSubred.setRole("member");
-
         userSubredditRepo.save(userSubred);
     }
 

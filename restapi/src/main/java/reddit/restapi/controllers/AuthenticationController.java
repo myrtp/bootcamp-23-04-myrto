@@ -1,5 +1,5 @@
 package reddit.restapi.controllers;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import reddit.restapi.exceptions.RestAppException;
 import reddit.restapi.models.JwtResponseDTO;
 import reddit.restapi.models.User;
@@ -10,15 +10,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import reddit.restapi.services.UsersService;
 import reddit.restapi.util.SignUpDTOTransformer;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-
+//@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {

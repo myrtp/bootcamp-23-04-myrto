@@ -30,6 +30,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -83,7 +84,9 @@ public class WebSecurityConfig {
 
         return http.build();
     }
-
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();

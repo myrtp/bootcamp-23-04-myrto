@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/subreddits")
 public class SubredditController {
@@ -47,13 +46,25 @@ public class SubredditController {
         return subreddit;
     }
 
-    @GetMapping("")
-    public Optional<Subreddit> getAllSubredditsbyCriteria(@RequestParam(required = false) String title) throws Exception {
+//    @GetMapping("")
+//    public List<Subreddit> getAllSubreddits() throws Exception {
+//
+//        return subredditService.getAllSubreddits();
+//
+//    }
 
-        return Optional.ofNullable(subredditService.getAllSubredditsbyCriteria(title));
-
+    @GetMapping("/title")
+    public Object getAllSubreddits(@RequestParam(required = false) String title) throws Exception {
+        if (title != null) {
+            return List.of(subredditService.getAllSubredditsbyCriteria(title)).toString();
+        } else {
+            return subredditService.getAllSubreddits();
+        }
     }
-
+//    @GetMapping("/{id}/title")
+//    public String getAllSubredditsbyCriteria(@RequestParam(required = false) String title) throws Exception{
+//        return List.of(subredditService.getAllSubredditsbyCriteria(title)).toString();
+//    }
     @PostMapping("")
     public Subreddit createSubreddit(@RequestBody Subreddit newSubreddit, Authentication authentication) throws Exception {
 

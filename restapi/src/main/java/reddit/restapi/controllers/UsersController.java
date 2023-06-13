@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import reddit.restapi.models.Post;
 import reddit.restapi.models.User;
 import reddit.restapi.models.dtos.UserDTO;
 import reddit.restapi.services.UsersService;
@@ -10,9 +11,9 @@ import reddit.restapi.repositories.UserRepo;
 import reddit.restapi.util.AuthorizationChecks;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/users")
 public class UsersController {
@@ -29,9 +30,9 @@ public class UsersController {
     }
 
     @GetMapping("")
-    public Optional<User> getAllUsersbyCriteria(@RequestParam(required = false) String username) throws Exception {
+    public List<User> getAllUsers() throws Exception {
 
-        return Optional.ofNullable(userService.getAllUserbyUsername(username));
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
@@ -77,9 +78,7 @@ public class UsersController {
         userService.deleteUserById(id);
         Map<String, String> resp = new HashMap<>();
         resp.put("deleteStatus", "Success");
-//        ObjectMapper mapper = new ObjectMapper();
-//        String message = mapper.writeValueAsString("deleted user");
-//        return message;
+
         return resp;
     }
 
