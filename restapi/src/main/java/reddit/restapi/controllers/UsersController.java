@@ -1,7 +1,11 @@
 package reddit.restapi.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import reddit.restapi.models.Post;
 import reddit.restapi.models.User;
@@ -29,18 +33,21 @@ public class UsersController {
         this.authorizationChecks = authorizationChecks;
     }
 
-    @GetMapping("")
-    public List<User> getAllUsers() throws Exception {
+//    @GetMapping("")
+//    public List<User> getAllUsers() throws Exception {
+//
+//        return userService.getAllUsers();
+//    }
 
-        return userService.getAllUsers();
+
+    @GetMapping("/profile")
+    public User getUserfromAuthentication(Authentication authentication) throws Exception {
+        return userService.getUserfromAuthentication( authentication);
     }
 
     @GetMapping("/{id}")
-//    public UserDTO getUserById(@PathVariable Long id) throws Exception {
         public UserDTO getUserById(@PathVariable Long id, Authentication authentication) throws Exception {
             authorizationChecks.isTheSameUser(id, authentication);
-            //code that gets user by id from database
-//        return userService.getUserById(id);
 
             User requestedUser = userService.getUserById(id);
             UserDTO requestedUserDTO = UserDTO.builder()

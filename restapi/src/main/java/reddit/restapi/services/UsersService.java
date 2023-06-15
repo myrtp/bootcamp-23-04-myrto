@@ -108,6 +108,11 @@ public class UsersService implements UserDetailsService {
                 -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
     }
 
+//    public User getUserByUsername(String username) throws RestAppException {
+//         return userRepository.findAnyByUsername(username).orElseThrow(()
+//                -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
+//    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userToBeLoggedIn = null;
