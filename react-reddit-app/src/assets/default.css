@@ -1,0 +1,392 @@
+.header {
+    text-align: center;
+}
+
+.header-left {
+
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: #ffffff;;
+    padding: 1rem;
+    font-family: Verdana, "Arial Black", sans-serif;
+;
+}
+
+.header-right {
+    margin-left: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: #ffffff;;
+    padding: 1rem;
+    font-family: Verdana, "Arial Black", sans-serif;
+;
+}
+
+.header-right a{
+    margin-right: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: #ffffff;;
+    padding: 1rem;
+    font-family: Verdana, "Arial Black", sans-serif;
+;
+}
+
+
+body {  font-family: Verdana, "Arial Black", sans-serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+}
+
+header {
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: #ffffff;;
+    padding: 1rem;
+    font-family: Verdana, "Arial Black", sans-serif;
+    justify-content: space-between;
+;
+
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 4fr 15fr; /* Specifies two equal-width columns */
+    grid-gap: 1px; /* Adds a gap between the columns */
+}
+
+.username,
+.post_metadata {
+    align-self: center;
+}
+
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+}
+
+/*.subreddit-list-container {*/
+
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*    background-color: #ffffff;*/
+/*    padding:  0.6rem;*/
+/*    margin-top: 2px; !* Adjust the margin-top value as needed *!*/
+/*    font-family: Verdana, Arial sans-serif;*/
+/*}*/
+.subreddit-list-container{
+    /* Existing styles */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 10px; /* Adjust the padding values as needed */
+    margin: 10px 0; /* Adjust the margin values as needed */
+}
+
+
+
+
+/*aside {*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*    background-color: #ffffff;*/
+/*    padding: 1rem;*/
+/*    font-family: Verdana, Arial sans-serif;*/
+/*}*/
+
+main {
+    background-color: #ffffff;
+    padding: 1rem;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+    font-family: Verdana, Arial, sans-serif;
+}
+
+.post-content {
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.post-metadata {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.3rem;
+    color: rgba(128, 128, 128, 0.8);
+}
+
+
+
+.subreddit-title {
+    border: 1px ;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.005rem;
+}
+.new-comment-container {
+    border: 1px solid red;
+    padding: 1rem;
+    margin: 1rem;
+    margin-left: 2rem;
+}
+
+.new-comment-input {
+    width: 100%;
+    height: 100px;
+}
+
+.transparent-footer {
+    background-color: transparent;
+}
+
+.back-to-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 40px;
+    background-color: #FF4500;
+    color: white; /* Set text color to white */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    background-color: #FF5722; /*.back-to-top-button.visible {*/
+/*    opacity: 1; this is to only be visible after scrolling might change it later*/
+}
+
+.dark-theme {
+    /* Add styles for dark theme */
+    background-color: #333;
+    color: #fff;
+}
+
+.light-theme {
+    /* Add styles for light theme */
+    background-color: #fff;
+    color: #333;
+}
+
+.link-black {
+    color: black;
+    text-decoration: none;
+    outline: none;
+}
+
+
+.custom-shading {
+    background-color: #f2f2f2;}
+
+.subreddit-details {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px; /* Adjust the width as needed */
+}
+
+.align-by-first-letter::first-letter {
+    float: left;
+    margin-right: 5px;
+    text-align: left; /* Align the first letter to the left */
+}
+
+.authorization-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+}
+
+.form-group input {
+    width: 90%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Verdana, "Arial Black", sans-serif;
+}
+
+.form-group button {
+    width: 40%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+
+.login-form,
+.registration-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-form label,
+.registration-form label {
+    color: #333;
+}
+
+.login-form button,
+.registration-form button {
+    border-radius: 5px;
+
+    background-color: #FF4500;
+
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0; /* Updated property */
+    width: 20%;
+    height: 20%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2px;
+}
+
+.profile-button {
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: Verdana, "Arial Black", sans-serif;
+    background-color: #FF4500;
+    color: white; /* Added property for white text color */
+    text-decoration: none;
+    padding: 0.5rem;
+
+}
+
+.comments {
+    margin-top: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+}
+
+.btn.back-to-top {
+    position: fixed;
+    right: 20px; /* Adjust the value as needed */
+    bottom: 20px; /* Adjust the value as needed */
+    width: 120px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border-radius: 5px;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-size: 16px; /* Adjust the font size as needed */
+    text-align: center;
+    line-height: 20px; /* Adjust the line height as needed */
+}
+
+/* Optional: Add hover and transition effects */
+.btn.back-to-top:hover {
+    background-color: #FF4500;
+    color: white; /* Added property for white text color */;
+}
+
+.btn.back-to-top i {
+    margin-right: 5px;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 50vh;
+    margin-right: 21vw;
+}
+
+.welcome-text {
+    text-align: center;
+    animation: fade-in 1s;
+}
+
+.login-button {
+    margin-top: 16px;
+    animation: slide-in 1s;
+    width: 10%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #FF4500;
+    color: white;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 50px;
+    height: 90px;
+    border-radius:10%;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
