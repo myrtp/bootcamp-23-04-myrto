@@ -254,19 +254,6 @@ main {
 
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    right: 0; /* Updated property */
-    width: 20%;
-    height: 20%;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 2px;
-}
-
 .profile-button {
     border-radius: 5px;
     font-weight: bold;
@@ -389,4 +376,69 @@ main {
 .profile-details h1 {
     font-size: 24px;
     font-weight: bold;
+}
+
+.create-subreddit-container {
+    margin-top: 14px;
+    width: 50%;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-subreddit-title {
+    margin-bottom: 1rem;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.create-subreddit-form {
+    margin-bottom: 1rem;
+}
+
+.create-subreddit-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.create-subreddit-form input,
+.create-subreddit-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem; /* Added margin-bottom */
+    border: none;
+    border-radius: 5px;
+    background-color: #F6F6F6;
+    color: #333;
+    font-weight: bold;
+}
+
+.create-subreddit-form textarea {
+    resize: vertical;
+}
+
+.create-subreddit-form button {
+    display: block;
+    width: 30%;
+    margin-top: 1rem; /* Added margin-top */
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #FF4500;
+    color: white;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center; /* Center align the button */
+}
+
+.create-button:hover {
+    background-color:white ;
+    color: #FF4500;
 }

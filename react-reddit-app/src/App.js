@@ -9,6 +9,9 @@ import SubredditFunctions from "./components/SubredditFunctions";
 import LoginContent from "./components/LoginContent";
 import UserProfilePage from "./components/UserProfilePage";
 import WelcomePage from "./components/WelcomePage";
+import UpdateUserProfile from "./components/UpdateUserProfile";
+import PostPage from "./components/PostPage";
+import CreateSubreddit from "./components/CreateSubreddit";
 
 
 function App() {
@@ -26,6 +29,10 @@ function App() {
                         <Route path="/home" element={<PostContent/>}/>
                         <Route path="/subreddits/:subredditId" element={<SubredditPage/>}/>
                         <Route path="/profile/:userId" element={<UserProfilePage/>}/>
+                        <Route path="/profile/:userId/edit" element={<UpdateUserProfile/>}/>
+                        <Route path="/post/:postId" element={<PostPage />} />
+                        <Route path="/subreddit/create" element={<CreateSubreddit/>} />
+
                     </Routes>
 
                 </div>

@@ -126,7 +126,6 @@ public class UsersService implements UserDetailsService {
         return new UserPrincipalDTO(userToBeLoggedIn);
     }
 
-    @Transactional
     public void deleteUserById(Long id) {
 
         userRepository.deleteById(id);

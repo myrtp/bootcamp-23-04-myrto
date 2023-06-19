@@ -69,11 +69,6 @@ public class SubredditService {
 
         }
 
-//        Optional<Subreddit> storedSubredditTitle = subredditRepo.findAnyByTitle(newSubreddit.getTitle());
-//
-//        if (storedSubredditTitle != null) {
-//            throw new RestAppException(HttpStatus.FORBIDDEN, "ERROR_CODE_FORBIDDEN", "EMAIL EXISTS!");
-//        }
 
         Instant newCreatedAt = Instant.now();
         newSubreddit.setCreatedAt(newCreatedAt);
@@ -81,9 +76,8 @@ public class SubredditService {
         UserSubred userSubred = new UserSubred();
         userSubred.setSubredditId(newSubreddit.getId());
         Long userId = authChecks.GetUserIDbyJWT(authentication);
-        User user = userService.getUserById(userId); // Fetch the user from the repository using the userId
+        User user = userService.getUserById(userId);
         userSubred.setUser(user);
-        // Assuming you have the user object available
         userSubred.setRole("admin");
         userSubredditRepo.save(userSubred);
 

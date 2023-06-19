@@ -18,7 +18,7 @@ function Header() {
                         height="60"
                     />
                 </Link>
-                    <h1>reddit.</h1>
+                <h1>reddit.</h1>
 
             </div>
 
