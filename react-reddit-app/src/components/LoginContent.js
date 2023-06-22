@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 function LoginContent() {
 
     let [loginForm, setLoginForm] = useState({username: "", password: ""});
-    let [registerForm, setRegisterForm] = useState({username: "", password: "", confirmPassword: ""});
+    let [registerForm, setRegisterForm] = useState({username: "", password: "", confirmPassword: "", dob: ""});
 
     const navigate = useNavigate();
     const handleLoginFormChange = (e) => {
@@ -21,6 +22,33 @@ function LoginContent() {
 
     const handleRegistration = (e) => {
         e.preventDefault();
+        const dobInstant = new Date(registerForm.dob).toISOString();
+
+        // Update the registerForm state with the converted dob
+        setRegisterForm({ ...registerForm, dob: dobInstant });
+
+        const signupData = {
+            email: registerForm.email,
+            username: registerForm.username,
+            password: registerForm.password,
+            confirmPassword: registerForm.confirmPassword,
+            dob: dobInstant,
+        };
+
+        fetch('http://localhost:8080/reddit/auth/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(signupData), // Replace `yourSignupData` with the data you want to send in the request body
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.token);
+                localStorage.setItem('jwt', data.token);
+            })
+            .catch((error) => console.log(error));
+
 
         navigate("/home");
     }
@@ -106,6 +134,15 @@ function LoginContent() {
                            name="confirmPassword"
                            placeholder="Password"
                            required></input>
+                    <label htmlFor="dob">Date of Birth</label>
+                    <DatePicker
+                        id="dob"
+                        selected={registerForm.dob}
+                        onChange={(date) => setRegisterForm({ ...registerForm, dob: date })}
+                        name="dob"
+                        dateFormat="yyyy-MM-dd"
+                        required
+                    />
                     <button type="submit">Register</button>
                 </form>
             </div>

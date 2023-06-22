@@ -51,7 +51,11 @@ public class PostService {
 
         }
         Long subredditId = newPost.getSubredditId();
-        authChecks.isMember( authentication, subredditId);
+
+        if (!authChecks.isMember(authentication, subredditId)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
         Instant newCreatedAt = Instant.now();
         newPost.setCreatedAt(newCreatedAt);
 
@@ -63,8 +67,11 @@ public class PostService {
 
     public Post updatePost(Post requestPost, Long id, Authentication authentication) throws Exception {
         Long userId = authChecks.GetUserIDbyJWT(authentication);
-        authChecks.isTheSameUser(userId,authentication);
-        authChecks.isAdmin(authentication, id);
+
+        if (!authChecks.isTheSameUser(userId,authentication)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
         Post PostfromDB = this.getPostById(id);
         PostfromDB.setTitle(requestPost.getTitle());
         PostfromDB.setText(requestPost.getText());
@@ -77,7 +84,12 @@ public class PostService {
 
     @Transactional
     public void deletePostById(Long id, Authentication authentication) throws Exception {
-        authChecks.isMember(authentication, id);
+        Long userId = authChecks.GetUserIDbyJWT(authentication);
+
+        if (!authChecks.isTheSameUser(userId,authentication)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
         postRepo.deleteById(id);
     }
 

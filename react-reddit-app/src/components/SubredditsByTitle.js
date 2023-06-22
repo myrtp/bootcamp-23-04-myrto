@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link, useNavigate  } from "react-router-dom";
+import {useLocation, Link, useNavigate, useParams} from "react-router-dom";
 import CreateSubreddit from "./CreateSubreddit";
 function SubredditsByTitle() {
     const [subreddits, setSubreddits] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
-
     let jwt = localStorage.getItem("jwt")
 
     useEffect(() => {

@@ -109,6 +109,7 @@ main {
     font-family: Verdana, Arial, sans-serif;
 }
 
+/*Post Content*/
 .post-content {
     padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -121,8 +122,10 @@ main {
     font-size: 0.3rem;
     color: rgba(128, 128, 128, 0.8);
 }
+/*Post Content*/
 
 
+/*Subreddit Content*/
 
 .subreddit-title {
     border: 1px ;
@@ -130,6 +133,10 @@ main {
     margin-top: 0.5rem;
     margin-left: 0.005rem;
 }
+
+/*Subreddit Content*/
+
+
 .new-comment-container {
     border: 1px solid red;
     padding: 1rem;
@@ -231,6 +238,7 @@ main {
     font-weight: bold;
 }
 
+/*Login Content */
 
 .login-form,
 .registration-form {
@@ -238,7 +246,10 @@ main {
     padding: 2rem;
     border-radius: 5px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-gap: 1rem;
 }
+
 
 
 .login-form label,
@@ -249,10 +260,13 @@ main {
 .login-form button,
 .registration-form button {
     border-radius: 5px;
-
+    margin-bottom: 0.5rem;
     background-color: #FF4500;
 
 }
+
+/*Login Content */
+
 
 .profile-button {
     border-radius: 5px;
@@ -264,7 +278,10 @@ main {
     padding: 0.5rem;
 
 }
-
+.profile-button:hover {
+    background-color: #FF4500;
+    color: black;
+}
 .comments {
     margin-top: 1rem;
     padding: 1rem;
@@ -350,33 +367,50 @@ main {
     }
 }
 
+/*Profile Display Settings*/
+
 .user-profile {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
 }
 
 .profile-info {
     display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    /*grid-template-columns: auto auto;*/
+    grid-column-gap: 10px;
     align-items: center;
+}
+
+.profile-image-container {
+    grid-column: 1;
+}
+
+.username-email-container {
+    grid-column: 2;
 }
 
 .profile-image {
     width: 50px;
-    height: 90px;
-    border-radius:10%;
+    height: 80px;
+    border-radius: 20%;
     object-fit: cover;
-    margin-right: 12px;
 }
 
-.profile-details {
-    display: flex;
-    flex-direction: column;
+.post-content {
+    margin-bottom: 20px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.profile-details h1 {
-    font-size: 24px;
-    font-weight: bold;
-}
+
+/***************************/
 
 .create-subreddit-container {
     margin-top: 14px;
@@ -441,4 +475,40 @@ main {
 .create-button:hover {
     background-color:white ;
     color: #FF4500;
+}
+
+.edit-button {
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    background-color: #FF4500;
+    margin-top: 16px;
+    width: 5%;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 9.5rem;
+    right: 4rem;
+}
+.edit-button:hover {
+    background-color: #FF4500;
+    color: black;
+}
+
+.update-button {
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    background-color: #FF4500;
+    margin-top: 16px;
+    width: 20%;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+
 }

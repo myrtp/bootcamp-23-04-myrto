@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-    @Data
+import java.time.Instant;
+
+@Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder(toBuilder = true)
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
         private String email;
         private String password;
         private String profileimage;
+        private Instant dob;
 
     }
 

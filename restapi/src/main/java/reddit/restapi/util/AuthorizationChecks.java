@@ -33,25 +33,21 @@ public class AuthorizationChecks {
         return true;
     }
 
-    public boolean isAdmin(Authentication authentication, Long subredditId) throws Exception {
+    public boolean isAdmin(Authentication authentication, Long subredditId) throws RestAppException {
         List<UserSubred> userSubreds = userSubredditRepo.findUserSubredBySubredditId(subredditId);
         Jwt userJwt = (Jwt) authentication.getPrincipal();
         Long userId = (Long) userJwt.getClaims().get("userId");
 
-        boolean hasRightToEditSubreddit = false;
-
         for (UserSubred userSubred : userSubreds) {
-            if (userSubred.getUser().getId().equals(userId) && userSubred.getRole().equals("ADMIN")) {
-                hasRightToEditSubreddit = true;
+            if (userSubred.getUser().getId().equals(userId) && userSubred.getRole().equals("admin")) {
+                return true;
             }
+        }
 
-        }
-        if (hasRightToEditSubreddit = false) {
-            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
-                    "User does not have authority to make changes");
-        }
-        return true;
+        throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                "User does not have authority to make changes");
     }
+
 
     public boolean isMember(Authentication authentication, Long subredditId) {
         List<UserSubred> userSubreds = userSubredditRepo.findUserSubredBySubredditId(subredditId);
@@ -66,6 +62,15 @@ public class AuthorizationChecks {
         }
 
         return false; // User is not a member
+    }
+
+    public boolean isSubredditMember(Authentication authentication, Long subredditId) {
+        Jwt userJwt = (Jwt) authentication.getPrincipal();
+        Long userId = (Long) userJwt.getClaims().get("userId");
+
+        UserSubred userSubred = userSubredditRepo.findUserSubredBySubredditIdAndUserId(subredditId, userId);
+        return userSubred != null && (userSubred.getRole().equals("ADMIN") || userSubred.getRole().equals("MEMBER")); // User is a member
+// User is not a member
     }
 
 

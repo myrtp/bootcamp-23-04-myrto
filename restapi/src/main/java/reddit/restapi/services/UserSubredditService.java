@@ -20,6 +20,11 @@ public class UserSubredditService {
     public List<UserSubred> getUserbySubredditId(Long subredditId) throws Exception {
         return userSubredRepo.findUserSubredBySubredditId(subredditId);
     }
-
+    public UserSubred findAdminBySubredditId(Long subredditId) {
+        return userSubredRepo.findAdminBySubredditId(subredditId);
+    }
+    public UserSubred findMemberBySubredditId(Long subredditId) {
+        return userSubredRepo.findMemberBySubredditId(subredditId);
+    }
 
 }

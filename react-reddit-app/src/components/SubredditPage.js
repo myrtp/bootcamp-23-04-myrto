@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-
+import CreatePost from "./CreatePost";
 function SubredditPage() {
     const {subredditId} = useParams();
     const [subreddit, setSubreddit] = useState(null);
@@ -9,7 +9,6 @@ function SubredditPage() {
     let jwt = localStorage.getItem("jwt")
 
     useEffect(() => {
-        // Fetch subreddit details
         fetch(`http://localhost:8080/reddit/subreddits/${subredditId}`, {
             method: "GET",
             headers: {
@@ -18,13 +17,12 @@ function SubredditPage() {
             },
         })
             .then((response) => response.json())
-            .then((subreddit) => {
+        .then((subreddit) => {
                 console.log(subreddit);
                 setSubreddit(subreddit);
             })
             .catch((error) => console.log(error));
 
-        // Fetch subreddit posts
         fetch(`http://localhost:8080/reddit/posts/subreddits/${subredditId}`, {
             method: "GET",
             headers: {
@@ -77,7 +75,7 @@ function SubredditPage() {
         <main>
             <h1>{subreddit.title}</h1>
             <p>{subreddit.description}</p>
-
+            <CreatePost subredditId={subredditId} />
             <h2>Posts</h2>
             {posts.map((post) => (
                 <div key={post.id}>

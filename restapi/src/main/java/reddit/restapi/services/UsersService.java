@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.transaction.annotation.Transactional;
 import reddit.restapi.exceptions.RestAppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,8 @@ public class UsersService implements UserDetailsService {
     @Autowired
     public UsersService(UserRepo userRepository,SignUpDTOTransformer signUpDTOTransformer) {
         this.userRepository = userRepository;
-        this.userRepository = userRepository;
+        this.signUpDTOTransformer = signUpDTOTransformer;
+
     }
 
     public List<User> getAllUsers() {
@@ -94,11 +94,10 @@ public class UsersService implements UserDetailsService {
         User userfromDB = this.getUserById(id);
 
         userfromDB.setUsername(requestUser.getUsername());
-        userfromDB.setEmail(requestUser.getEmail());
-        userfromDB.setUsername(requestUser.getUsername());
         userfromDB.setPassword(requestUser.getPassword());
         userfromDB.setProfileimage(requestUser.getProfileimage());
         userfromDB.setEmail(requestUser.getEmail());
+        userfromDB.setDob(requestUser.getDob());
         return userRepository.save(requestUser);
 
     }
@@ -108,10 +107,6 @@ public class UsersService implements UserDetailsService {
                 -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
     }
 
-//    public User getUserByUsername(String username) throws RestAppException {
-//         return userRepository.findAnyByUsername(username).orElseThrow(()
-//                -> new RestAppException(HttpStatus.NOT_FOUND, "ERROR_CODE_USER_NOT_FOUND", "User not found"));
-//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

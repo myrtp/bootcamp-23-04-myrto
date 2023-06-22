@@ -51,14 +51,15 @@ public class SubredditService {
 
 
     public Subreddit updateSubreddit(Subreddit requestSubreddit, Long id, Authentication authentication) throws Exception {
-
-        authChecks.isAdmin(authentication, id);
+        if (!authChecks.isAdmin(authentication, id)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
         Subreddit subredditfromDB = this.getSubredditById(id);
         subredditfromDB.setTitle(requestSubreddit.getTitle());
         subredditfromDB.setDescription(requestSubreddit.getDescription());
 
         return subredditRepo.save(subredditfromDB);
-
     }
 
 
@@ -88,20 +89,27 @@ public class SubredditService {
 
     public void joinSubreddit(Authentication authentication, Long id) throws Exception {
         // Check if the user is already a member
-        authChecks.isMember(authentication, id);
-        Long userId = authChecks.GetUserIDbyJWT(authentication);
-        User user = userService.getUserById(userId);
-        UserSubred userSubred = new UserSubred();
-        userSubred.setUser(user);
-        userSubred.setSubredditId(id);
-        userSubred.setRole("member");
-        userSubredditRepo.save(userSubred);
+        if (authChecks.isSubredditMember(authentication, id)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
+            Long userId = authChecks.GetUserIDbyJWT(authentication);
+            User user = userService.getUserById(userId);
+            UserSubred userSubred = new UserSubred();
+            userSubred.setUser(user);
+            userSubred.setSubredditId(id);
+            userSubred.setRole("member");
+            userSubredditRepo.save(userSubred);
+
     }
 
 
     @Transactional
     public void deleteSubredditById(Long id, Authentication authentication) throws Exception {
-        authChecks.isAdmin(authentication, id);
+        if (!authChecks.isAdmin(authentication, id)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
         subredditRepo.deleteById(id);
     }
 

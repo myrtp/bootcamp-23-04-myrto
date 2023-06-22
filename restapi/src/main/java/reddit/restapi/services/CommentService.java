@@ -38,13 +38,14 @@ public class CommentService {
         if (newComment.getId() != null) {
             throw new RestAppException(HttpStatus.FORBIDDEN, "ERROR_CODE_FORBIDDEN", "COMMENT ID EXISTS!");
         }
-
         Long subredditId = newComment.getSubredditId();
         Long userId = newComment.getUserId();
+        if (!authChecks.isMember(authentication, subredditId)) {
+            throw new RestAppException(HttpStatus.UNAUTHORIZED, "ERROR_CODE_UNAUTHORIZED",
+                    "User does not have authority to make changes");
+        }
+
         Long postId = newComment.getPostId();
-        authChecks.isMember(authentication, subredditId);
-        authChecks.isTheSameUser(userId, authentication);
-        authChecks.isMember(authentication, postId);
         Instant newCreatedAt = Instant.now();
         newComment.setCreatedAt(newCreatedAt);
 

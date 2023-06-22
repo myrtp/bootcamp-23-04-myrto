@@ -1,24 +1,19 @@
 package reddit.restapi.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import reddit.restapi.exceptions.RestAppException;
 import reddit.restapi.models.Subreddit;
-import reddit.restapi.models.User;
 import reddit.restapi.models.UserSubred;
 import reddit.restapi.repositories.SubredditRepo;
 import reddit.restapi.repositories.UserSubredRepo;
 import reddit.restapi.services.SubredditService;
 import reddit.restapi.services.UserSubredditService;
 
-import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
 @RestController
 @RequestMapping("/subreddits")
 public class SubredditController {
@@ -78,11 +73,33 @@ public class SubredditController {
         return subredditService.updateSubreddit(subreddit, id, authentication);
     }
 
-    @GetMapping("{subredditId}/members")
-    public List<UserSubred> getUserIdbySubredditId(@PathVariable Long subredditId) throws Exception {
+    @GetMapping("{id}/members")
+    public List<UserSubred> getUserIdbySubredditId(@PathVariable Long id) throws Exception {
 
-        return userSubredditService.getUserbySubredditId(subredditId);
+        return userSubredditService.getUserbySubredditId(id);
     }
+    @GetMapping("{id}/admin")
+    public UserSubred getAdminBySubredditId(@PathVariable Long id) throws Exception {
+
+
+        return userSubredditService.findAdminBySubredditId(id);
+
+    }
+
+    @GetMapping("{id}/member")
+    public UserSubred findMemberBySubredditId(@PathVariable Long id) throws Exception {
+
+
+        return userSubredditService.findMemberBySubredditId(id);
+
+    }
+
+//    @GetMapping("{id}/{userId}/role")
+//    public String getUserRoleForSubreddit(@PathVariable Long id, @PathVariable Long userId) throws Exception {
+//        return subredditService.getUserRoleForSubreddit(id, userId);
+//    }
+
+
 
     @PostMapping("/{id}/join") public ResponseEntity<String> joinSubreddit(@PathVariable Long id,  Authentication authentication) throws Exception {
         subredditService.joinSubreddit( authentication,  id);

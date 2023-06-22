@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import fetchCommentsForPost from './service/FetchCommentsForPost';
+import CreateComment from "./CreateComment";
 
 
 
@@ -45,7 +46,7 @@ function PostPage() {
             <h2>{post.title}</h2>
             <p>{post.text}</p>
             <img src={post.image} alt="Post Image" width="600" height="600" />
-
+            <CreateComment postId={postId} subredditId={post.subredditId} />
             <h3>Comments</h3>
             {comments.map((comment) => (
                 <div key={comment.id}>

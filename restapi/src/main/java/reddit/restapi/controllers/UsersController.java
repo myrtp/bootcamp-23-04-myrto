@@ -40,10 +40,10 @@ public class UsersController {
 //    }
 
 
-    @GetMapping("/profile")
-    public User getUserfromAuthentication(Authentication authentication) throws Exception {
-        return userService.getUserfromAuthentication( authentication);
-    }
+//    @GetMapping("/profile")
+//    public User getUserfromAuthentication(Authentication authentication) throws Exception {
+//        return userService.getUserfromAuthentication( authentication);
+//    }
 
     @GetMapping("/{id}")
         public UserDTO getUserById(@PathVariable Long id, Authentication authentication) throws Exception {
@@ -56,6 +56,7 @@ public class UsersController {
                     .password(requestedUser.getPassword())
                     .id(requestedUser.getId())
                     .profileimage(requestedUser.getProfileimage())
+                    .dob(requestedUser.getDob())
                     .build();
             return requestedUserDTO;
     }
@@ -74,7 +75,7 @@ public class UsersController {
     }
 
     @GetMapping("/{id}/username")
-    public String getUsernameById(@PathVariable("id") Long userId) throws Exception{
+    public String getUsernameById(@PathVariable Long userId) throws Exception{
         return userService.getUsernameById(userId);
     }
 
