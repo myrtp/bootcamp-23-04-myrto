@@ -70,11 +70,22 @@ function SubredditPage() {
         navigate(`/post/${postId}`);
     };
 
+    const handleEditSubreddit = () => {
+        navigate("/subreddits/:subredditId/edit");
+    };
+
     return (
 
         <main>
             <h1>{subreddit.title}</h1>
             <p>{subreddit.description}</p>
+            <div >
+                <button className="subreddit-update-button " onClick={handleEditSubreddit}>
+                    Edit
+                </button>
+            </div>
+            <Link  className="join-button" to={`/subreddits/${subredditId}/join`}>+ Join</Link>
+
             <CreatePost subredditId={subredditId} />
             <h2>Posts</h2>
             {posts.map((post) => (

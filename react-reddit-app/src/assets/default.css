@@ -169,18 +169,15 @@ main {
 }
 
 .back-to-top:hover {
-    background-color: #FF5722; /*.back-to-top-button.visible {*/
-/*    opacity: 1; this is to only be visible after scrolling might change it later*/
+    background-color: #FF5722;
 }
 
 .dark-theme {
-    /* Add styles for dark theme */
     background-color: #333;
     color: #fff;
 }
 
 .light-theme {
-    /* Add styles for light theme */
     background-color: #fff;
     color: #333;
 }
@@ -198,7 +195,7 @@ main {
 .subreddit-details {
     text-align: center;
     margin: 0 auto;
-    max-width: 600px; /* Adjust the width as needed */
+    max-width: 600px;
 }
 
 .align-by-first-letter::first-letter {
@@ -372,12 +369,12 @@ main {
 .user-profile {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align content to the left */
+    align-items: flex-start;
 }
 
 .profile-info {
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
+    justify-content: flex-start;
     margin-bottom: 20px;
 }
 
@@ -444,7 +441,7 @@ main {
 .create-subreddit-form textarea {
     width: 100%;
     padding: 0.5rem;
-    margin-bottom: 0.5rem; /* Added margin-bottom */
+    margin-bottom: 0.5rem;
     border: none;
     border-radius: 5px;
     background-color: #F6F6F6;
@@ -459,7 +456,7 @@ main {
 .create-subreddit-form button {
     display: block;
     width: 30%;
-    margin-top: 1rem; /* Added margin-top */
+    margin-top: 1rem;
     padding: 0.5rem;
     border: none;
     border-radius: 5px;
@@ -469,7 +466,7 @@ main {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    text-align: center; /* Center align the button */
+    text-align: center;
 }
 
 .create-button:hover {
@@ -510,5 +507,123 @@ main {
     font-family: Verdana, "Arial Black", sans-serif;
     font-weight: bold;
     cursor: pointer;
+
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+    margin-top: 16px;
+    font-family: Verdana, "Arial Black", sans-serif;
+
+}
+.form-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: Verdana, "Arial Black", sans-serif;
+
+}
+
+.form-field input,
+.form-field textarea {
+    margin-top: 20px;
+    width: 50%;
+    font-family: Verdana, "Arial Black", sans-serif;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Add this line */
+}
+
+.create-post-button {
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    background-color: #FF4500;
+    margin-top: 16px;
+    width: 20%;
+    padding: 0.5rem;
+    border: none;
+    color: black;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+.update-subreddit-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-family: Verdana, "Arial Black", sans-serif;
+}
+
+.subreddit-update-button {
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    background-color: #FF4500;
+    font-size: 14px; /* Adjust font size as desired */
+
+    margin-top: 21px;
+    width: 5%;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 11rem;
+    right: 1rem;
+}
+.subreddit-update-button:hover {
+    background-color: #FF4500;
+    color: black;
+}
+.join-button {
+    margin-bottom: 0.5rem;
+    margin-top: 16px;
+    width: 18%;
+    padding: 1rem;
+    border: none;
+    color: black;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 11rem;
+    right: 20rem;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.join-button:hover {
+    color: #FF4500;
+}
+
+.button-container {
+    margin-top: 16px;
+    margin-left: 200px;
+}
+
+.yes-button, .no-button {
+    display: inline-block;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
+    font-family: Verdana, "Arial Black", sans-serif;
+    font-weight: bold;
+    background-color: #FF4500;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.yes-button:hover, .no-button:hover {
+    background-color: #FF4500;
+    color: black;
 
 }

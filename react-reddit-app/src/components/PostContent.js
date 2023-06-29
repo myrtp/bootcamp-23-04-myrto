@@ -107,11 +107,11 @@ function PostContent() {
                             <div className="post_metadata">
                                 <div>{post.createdAt}</div>
                             </div>
-                            <div className="comments">
-                                {commentsPerPost?.[post.id]?.map((comment) => (
-                                    <p key={comment.id}>{comment.text}</p>
-                                ))}
-                            </div>
+                            {/*<div className="comments">*/}
+                            {/*    {commentsPerPost?.[post.id]?.map((comment) => (*/}
+                            {/*        <p key={comment.id}>{comment.text}</p>*/}
+                            {/*    ))}*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>

@@ -43,11 +43,11 @@ function PostPage() {
 
     return (
         <div>
-            <h2>{post.title}</h2>
+            <h1>{post.title}</h1>
             <p>{post.text}</p>
             <img src={post.image} alt="Post Image" width="600" height="600" />
             <CreateComment postId={postId} subredditId={post.subredditId} />
-            <h3>Comments</h3>
+            <h2>Comments</h2>
             {comments.map((comment) => (
                 <div key={comment.id}>
                     <div className="comments">
