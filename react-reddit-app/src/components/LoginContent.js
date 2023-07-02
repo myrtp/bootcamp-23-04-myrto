@@ -40,7 +40,7 @@ function LoginContent() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(signupData), // Replace `yourSignupData` with the data you want to send in the request body
+            body: JSON.stringify(signupData),
         })
             .then((response) => response.json())
             .then((data) => {
@@ -50,7 +50,7 @@ function LoginContent() {
             .catch((error) => console.log(error));
 
 
-        navigate("/home");
+        navigate("/");
     }
 
     const handleLogin = (e) => {

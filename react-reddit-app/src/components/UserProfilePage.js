@@ -80,7 +80,7 @@ function UserProfilePage() {
                 </div>
             </div>
 
-            <DeleteUser userId={userId} />
+            {/*<DeleteUser userId={userId} />*/}
 
             <h2>Posts</h2>
             {posts.map((post) => (

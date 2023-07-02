@@ -24,6 +24,8 @@
 
     "http-proxy": "^1.18.1",
 
+    "node.js": "^0.0.1-security",
+
     "react": "^18.2.0",
 
     "react-datepicker": "^4.14.0",

@@ -35,7 +35,7 @@ To run the application, follow these steps:
 - Open a new terminal.
 - Navigate to: `cd restapi`
 - Run the command: `mvn spring-boot:run`
--
+
 1. Start the backend server:
    Run ReastApiApplication
 
