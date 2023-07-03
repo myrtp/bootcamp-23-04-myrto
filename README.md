@@ -35,11 +35,14 @@ To run the application, follow these steps:
 - Open a new terminal.
 - Navigate to: `cd restapi`
 - Run the command: `mvn spring-boot:run`
-
-1. Start the backend server:
+- 
+1. Set up the database locally: 
+    - Navigate to path:`database/src/main/resources`
+    - Run the migrations in PostgreSQL console: `V1__init_reddit_database.sql` and `V2__init_reddit_database.sql`
+2. Start the backend server:
    Run ReastApiApplication
 
-2. Start the frontend development server:
+3. Start the frontend development server:
     - Open a new terminal.
     - Navigate to: `cd react-reddit-app`
     - Run the command: `npm start`
@@ -49,7 +52,7 @@ To run the application, follow these steps:
 
 
 ## API Documentation Example
-The API provides endpoints for all resources like the following. This example showcases endpoints for users:
+The API provides the following endpoints:
 
 - `GET /users`: Retrieve a list of users.
 - `GET /users/{userId}`: Retrieve details of a specific user.
@@ -58,7 +61,25 @@ The API provides endpoints for all resources like the following. This example sh
 - `DELETE /users/{userId}`: Delete a user.
 
 
+- `GET /posts`: Retrieve a list of posts.
+- `GET /posts/{postId}`: Retrieve details of a specific post.
+- `POST /posts`: Create a new post.
+- `PUT /posts/{postId}`: Update a post.
+- `DELETE /posts/{postId}`: Delete a post.
+- 
 
+- `GET /subreddits`: Retrieve a list of subreddits.
+- `GET /subreddits/{subredditId}`: Retrieve details of a specific subreddits.
+- `POST /subreddits`: Create a new subreddit.
+- `PUT /subreddits/{subredditId}`: Update a subreddits.
+- `DELETE /subreddits/{subredditId}`: Delete a subreddits.
+- 
+
+- `GET /comments`: Retrieve a list of comments.
+- `GET /comments/{commentId}`: Retrieve details of a specific comments.
+- `POST /comments`: Create a new comment.
+- `PUT /comments/{commentId}`: Update a comments.
+- `DELETE /comments/{commentId}`: Delete a comments.
 
 ## Screenshots
 <img src="login_signup.png" alt="login_signup" width="600"/>\
