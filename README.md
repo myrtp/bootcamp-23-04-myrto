@@ -61,18 +61,18 @@ The API provides endpoints for all resources like the following. This example sh
 
 
 ## Screenshots
-<img src="login_signup.png" alt="login_signup" width="500"/>\
+<img src="login_signup.png" alt="login_signup" width="550"/>\
 Log in or Sign up Page with authentication
 
-<img src="main_page.png" alt="mainpage" width="500"/>\
+<img src="main_page.png" alt="mainpage" width="550"/>\
 Main Page: Showcases posts, available communities and create community action.
 
-<img src="profile_pg.png" alt="profile" width="500"/>\
+<img src="profile_pg.png" alt="profile" width="550"/>\
 User profile page.
 
-<img src="edit_profile.png" alt="edit profile" width="500"/>\
+<img src="edit_profile.png" alt="edit profile" width="550"/>\
 Edit profile page action.
 
-<img src="subreddit_pg.png" alt="subreddit" width="500"/>\
+<img src="subreddit_pg.png" alt="subreddit" width="550"/>\
 Community page: Features community posts, description, create post action and join community button.
 
