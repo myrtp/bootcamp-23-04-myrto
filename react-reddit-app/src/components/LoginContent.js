@@ -55,9 +55,9 @@ function LoginContent() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        navigate("/home");
         // Encode the username and password in the Base64 auth format
         const basicAuth = btoa(`${loginForm.username}:${loginForm.password}`);
+        navigate("/home");
 
         fetch(`http://localhost:8080/reddit/auth/login`,
             {
