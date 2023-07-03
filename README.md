@@ -70,7 +70,7 @@ Main Page: Showcases posts, available communities and create community action.
 <img src="profile_pg.png" alt="profile" width="600"/>\
 User profile page.
 
-<img src="edit_profile.png" alt="edit profile" width="600/>\
+<img src="edit_profile.png" alt="edit profile" width="600"/>\
 Edit profile page action.
 
 <img src="subreddit_pg.png" alt="subreddit" width="600"/>\
