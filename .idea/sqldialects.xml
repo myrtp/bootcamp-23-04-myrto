@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/database/src/main/resources/V1__init_reddit_database.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/database/src/main/resources/V2_init_reddit_database.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/database/src/main/resources/db.migration/V1__init_reddit_database.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/database/src/main/resources/db.migration/V2_init_reddit_database.sql" dialect="GenericSQL" />
   </component>
 </project>
